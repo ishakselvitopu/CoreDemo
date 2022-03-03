@@ -47,14 +47,14 @@ namespace BussinessLayer.Concrete
         {
             return _blogDal.GetListWithCategory();
         }
-
-        //Blog IBlogService.GetByBlogID(int blogID)
-        //{
-        //    throw new NotImplementedException();
-        //}
         public List<Blog> GetBlogByID(int blogID)
         {
             return _blogDal.FilterList(x => x.BlogID == blogID);
+        }
+
+        public List<Blog> GetBlogListByWriter(int writerID)
+        {
+            return _blogDal.FilterList(x => x.WriterID == writerID);
         }
     }
 }

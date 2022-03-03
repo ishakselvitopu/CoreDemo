@@ -12,8 +12,9 @@ namespace BussinessLayer.Abstract
         void BlogAdd(Blog blog);
         void BlogDelete(Blog blog);
         void BlogUpdate(Blog blog);
-        List<Blog> GetBlogList ();
+        List<Blog> GetBlogList();
         Blog GetByBlogID(int blogID);
         List<Blog> GetBlogListWithCategory();
+        List<Blog> GetBlogListByWriter(int writerID);
     }
 }
