@@ -1,0 +1,24 @@
+﻿using BussinessLayer.Abstract;
+using DataAcessLayer.Abstract;
+using EntityLayer.Concrete;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BussinessLayer.Concrete
+{
+    public class NewsLetterManager : INewsLetterService
+    {
+        INewsLetterDal _newsLetterDal;
+        public NewsLetterManager(INewsLetterDal newsLetterDal)
+        {
+            _newsLetterDal = newsLetterDal;
+        }
+        public void NewsLetterAdd(NewsLetter newsLetter)
+        {
+            _newsLetterDal.Insert(newsLetter);
+        }
+    }
+}
