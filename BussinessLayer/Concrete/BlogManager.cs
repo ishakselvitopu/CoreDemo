@@ -12,22 +12,23 @@ namespace BussinessLayer.Concrete
     public class BlogManager : IBlogService
     {
         IBlogDal _blogDal;
-
         public BlogManager(IBlogDal blogDal)
         {
             _blogDal = blogDal;
         }
-        public void BlogAdd(Blog blog)
+        public void Add(Blog blog)
         {
             _blogDal.Insert(blog);
         }
-
-        public void BlogDelete(Blog blog)
+        public void Delete(Blog blog)
         {
             _blogDal.Delete(blog);
         }
-
-        public List<Blog> GetBlogList()
+        public void Update(Blog blog)
+        {
+            _blogDal.Update(blog);
+        }
+        public List<Blog> GetList()
         {
             return _blogDal.GetListAll();
         }
@@ -35,30 +36,21 @@ namespace BussinessLayer.Concrete
         {
             return _blogDal.GetListAll().TakeLast(3).ToList();
         }
-
-        public void BlogUpdate(Blog blog)
-        {
-            _blogDal.Delete(blog);
-        }
-
-        public Blog GetByBlogID(int blogID)
+        public Blog GetByClassID(int blogID)
         {
             return _blogDal.GetByID(blogID);
-            
         }
-
         public List<Blog> GetBlogListWithCategory()
         {
             return _blogDal.GetListWithCategory();
         }
-        public List<Blog> GetBlogByID(int blogID)
-        {
-            return _blogDal.FilterList(x => x.BlogID == blogID);
-        }
-
         public List<Blog> GetBlogListByWriter(int writerID)
         {
             return _blogDal.FilterList(x => x.WriterID == writerID);
+        }
+        public List<Blog> GetBlogByID(int blogID)
+        {
+            return _blogDal.FilterList(x => x.BlogID == blogID);
         }
     }
 }
