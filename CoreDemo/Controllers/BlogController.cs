@@ -31,7 +31,7 @@ namespace CoreDemo.Controllers
         }
         public IActionResult BlogListByWriter(int blogId)
         {
-            var values = blogManager.GetBlogByID(1);
+            var values = blogManager.GetBlogListWithCategoryByWriter(1);
             return View(values);
         }
         [HttpGet]
@@ -39,11 +39,11 @@ namespace CoreDemo.Controllers
         {
 
             List<SelectListItem> categoryValues = (from x in categoryManager.GetList()
-                                                  select new SelectListItem
-                                                  {
-                                                      Text = x.CategoryName,
-                                                      Value = x.CategoryID.ToString()
-                                                  }).ToList();
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                   }).ToList();
             ViewBag.dynamic = categoryValues;
             return View();
         }
@@ -68,7 +68,34 @@ namespace CoreDemo.Controllers
                 }
             }
             return View();
-
+        }
+        public IActionResult BlogDelete(int id)
+        {
+            var blogDelete = blogManager.GetByClassID(id);
+            blogManager.Delete(blogDelete);
+            return RedirectToAction("BlogListByWriter", "Blog");
+        }
+        [HttpGet]
+        public IActionResult BlogEdit(int id)
+        {
+            var blogFind = blogManager.GetByClassID(id);
+            List<SelectListItem> categoryValues = (from x in categoryManager.GetList()
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.CategoryName,
+                                                       Value = x.CategoryID.ToString()
+                                                   }).ToList();
+            ViewBag.dynamic = categoryValues;
+            return View(blogFind);
+        }
+        [HttpPost]
+        public IActionResult BlogEdit(Blog blog)
+        {
+            blog.WriterID = 1;
+            blog.CreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            blog.BlogStatus = true;
+            blogManager.Update(blog);
+            return RedirectToAction("BlogListWriter","Blog");
         }
     }
 }

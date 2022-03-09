@@ -22,11 +22,11 @@
             <td>@item.BlogID</td>
             <td>@item.BlogTittle</td>
             <td>@item.CreateDate</td>
-            <td>@item.CategoryID</td>
+            <td><span class="badge badge-info">@item.Category.CategoryName</span></td>
             <td>@item.BlogStatus</td>
-            <td><a href="#" class="btn btn-danger">Sil</a></td>
-            <td><a href="#" class="btn btn-warning">Duzenle</a></td>
+            <td><a href="/Blog/BlogDelete/@item.BlogID" class="btn btn-danger">Sil</a></td>
+            <td><a href="/Blog/BlogEdit/@item.BlogID" class="btn btn-warning">Duzenle</a></td>
         </tr>
     }
 </table>
-<a href="#" class="btn btn-primary">Yeni Kategori</a>
+<a href="/Blog/BlogAdd/" class="btn btn-primary">Yeni Blog Olustur</a>
