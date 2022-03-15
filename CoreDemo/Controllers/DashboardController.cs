@@ -11,7 +11,7 @@ namespace CoreDemo.Controllers
     public class DashboardController : Controller
     {
         Context context = new Context();
-        [AllowAnonymous]
+        
         public IActionResult Index()
         {
             ViewBag.blogCount = context.Blogs.Count().ToString();

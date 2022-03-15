@@ -32,6 +32,8 @@ namespace BussinessLayer.Concrete
             return _writerDal.GetByID(id);
         }
 
+        
+
         public List<Writer> GetList()
         {
             return _writerDal.GetListAll();
