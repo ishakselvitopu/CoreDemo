@@ -7,16 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CoreDemo.Controllers
+namespace CoreDemo.Areas.Admin.Controllers
 {
-    public class CategoryController : Controller
+    [Area("Admin")]
+    public class CatergoryController : Controller
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
         [AllowAnonymous]
         public IActionResult Index()
         {
-            var values = categoryManager.GetList();
-            return View(values);
+            return View();
         }
     }
 }
