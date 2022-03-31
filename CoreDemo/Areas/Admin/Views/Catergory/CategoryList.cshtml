@@ -1,0 +1,43 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<EntityLayer.Concrete.Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+@*<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />*@
+@*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+<h1>Kategori Listele</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Kategori Adi</th>
+            <th>Pasif Yap</th>
+            <th>Aktif Yap</th>
+            <th>Duzenle</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kategori in Model)
+        {
+            <tr>
+                <td>@kategori.CategoryID</td>
+                <td>@kategori.CategoryName</td>
+                <td>
+                    <a href="#" class="btn btn-info">Pasif Yap</a>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-secondary">Aktif Yap</a>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-danger">Duzenle</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model, page => Url.Action("CategoryList", new { page }))

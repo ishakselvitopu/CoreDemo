@@ -6,17 +6,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [AllowAnonymous]
     public class CatergoryController : Controller
     {
         CategoryManager categoryManager = new CategoryManager(new EfCategoryRepository());
-        [AllowAnonymous]
-        public IActionResult Index()
+        
+        public IActionResult CategoryList(int page=1)
         {
-            return View();
+            var kategoriListele = categoryManager.GetList().ToPagedList(page,3);
+            return View(kategoriListele);
         }
     }
 }
